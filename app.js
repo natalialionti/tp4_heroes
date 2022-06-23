@@ -1,8 +1,12 @@
 const express = require("express");
 const app = express();
 const path = require ("path");
+const port = 3030;
+const public = path.resolve(__dirname, "./public");
 
-app.listen(3030, () => console.log('Servidor corriendo'));
+app.listen(port, () => console.log('Servidor corriendo en puerto ' + port));
+
+app.use(express.static(public));
 
 app.get('/home', (req, res) => {res.sendFile(path.join(__dirname, '/views/index.html'));});
 app.get('/berners-lee', (req, res) => {res.sendFile(path.join(__dirname, '/views/berners-lee.html'));});
